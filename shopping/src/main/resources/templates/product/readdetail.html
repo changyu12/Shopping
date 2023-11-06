@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+ 
+ [[${product.id}]] 
+ <br>
+ [[${product.name}]]
+ <br>
+ <img class="img-fluid" th:src="@{|http://chandool.cdn1.cafe24.com/${product.pimg}|}" alt="" />
+ <br>
+ [[${product.about}]]
+ <br> 
+ [[${product.productid}]] 
+ <br>
+ [[${product.price}]]
+ <br>
+ 
+ 
+  <div class="row g-2">
+                    <div class="col-12 col-md-auto flex-md-grow-1">
+                      
+                    </div>
+                   <div class="col-12 col-sm-auto flex-sm-grow-1 flex-md-grow-0">
+                      <a href="/readlist" class="btn btn-phoenix-success w-100"><span class="fa-regular fa-calendar-plus me-2"></span>목록</a>
+                    </div>
+                    <div class="col-6 col-sm-auto">
+                      <a href="/update?bno=${customer.cno}" class="btn btn-phoenix-primary w-100"><span class="fa-solid fa-heart me-2"></span>수정</a>
+                    
+                    </div>
+                    <div class="col-6 col-sm-auto">
+                     <a th:href="@{|/product/delete?id=${product.id}|}" class="btn btn-phoenix-danger w-100"><span class="fa-solid fa-share-nodes me-2"></span>삭제</a>
+                    
+                    </div>
+                  </div>
+<!-- <form th:action="@{|/item/create?id=${list.id}|}" method="post">
+ <input type="hidden" name="productid" th:value="${list.productid} ">
+<input type="hidden" name="name" th:value="${list.name} ">
+<input type="hidden" name="price" th:value="${list.price} ">
+
+<input type="submit" value="장바구니 담기">
+  <p><a href="/cart/readdetail">장바구니</a>
+
+</form>-->
+</body>
+</html>
