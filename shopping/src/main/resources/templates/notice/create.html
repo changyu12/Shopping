@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1> 공지사항 등록</h1>
+<form action="/notice/create" method="post">
+	<p>제목 : <input type="text" name="title"></p>
+	<p>내용 : <input type="text" name="content"></p>
+	<p>작성자 : <input type="text" name="writer" th:value="${name}"></p>
+	<p><Select name="category">
+		<option value="일반">일반공지</option>
+		<option value="전체">전체공지</option>
+		<option value="긴급">긴급공지</option>
+	</Select></p>
+	<p><input type="submit" value="등록"></p>
+	
+	
+</form>
+</body>
+</html>

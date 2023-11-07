@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<th:block th:each="list:${chatlist}">
+	<a th:href="@{|/chatroom/readdetail?id=${list.id}|}" th:text="${list.id}"></a>
+	<a th:text="${list.receiver}"></a>
+</th:block>
+</body>
+</html>
