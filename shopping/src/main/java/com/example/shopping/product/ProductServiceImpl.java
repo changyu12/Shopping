@@ -68,12 +68,7 @@ public class ProductServiceImpl implements ProductService {
 		return product;
 	}
 
-	@Override
-	public void update(Product product) {
-		
-		productRepository.save(product);
-
-	}
+	
 
 	@Override
 	public void delete(Integer id) {
@@ -81,6 +76,48 @@ public class ProductServiceImpl implements ProductService {
 		Product product = op.get();
 		
 		productRepository.delete(product);
+	}
+
+	@Override
+	public void update(Integer id, String about, String name, MultipartFile file, double price ) {
+		Optional<Product> op = productRepository.findById(id);
+		Product product = op.get();
+		String uuid = UUID.randomUUID().toString();
+		
+		String filename = uuid + "_" + file.getOriginalFilename();;
+		
+		String FTP_ADDRESS = "iup.cdn1.cafe24.com";
+				String LOGIN = "chandool";
+				String PSW = "rb123123!";
+				
+				FTPClient con = null;
+				
+				try {
+					con = new FTPClient();
+					con.connect(FTP_ADDRESS);
+					
+					if(con.login(LOGIN, PSW)) {
+						con.enterLocalPassiveMode();
+						con.setFileType(FTP.BINARY_FILE_TYPE);
+						con.storeFile(filename, file.getInputStream());
+						con.logout();
+						con.disconnect();
+						System.out.println("success!!!");
+					}
+				} catch (Exception e) {
+					System.out.println("fail!!!");
+				}
+		
+		
+		
+		product.setAbout(about);
+		product.setName(name);
+		product.setPimg(filename);
+		product.setPrice(price);
+		product.setCreateDate(LocalDateTime.now());
+		
+		productRepository.save(product);
+		
 	}
 
 }

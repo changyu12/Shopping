@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+
 @RequestMapping("/product")
 @Controller
 public class ProductController {
@@ -44,6 +45,29 @@ public class ProductController {
 		
 		return "product/readdetail";
 	}
+	
+	@GetMapping("/update")
+	public String update(Model model, @RequestParam Integer id) {
+		model.addAttribute("list",productService.readdetail(id));
+		
+		return "product/update";
+	}
+	
+	@PostMapping("/update")
+	public String update(@RequestParam Integer id,
+						 @RequestParam String about,
+						 @RequestParam String name,
+						 @RequestParam ("filename") MultipartFile file,
+						 @RequestParam double price
+						 ) {
+		
+		
+	
+		productService.update(id, about, name, file, price);
+		
+		return "redirect:/product/readdetail?id="+id;
+	}
+
 	
 	@GetMapping("/delete")
 	public String delete(@RequestParam ("id") Integer id) {

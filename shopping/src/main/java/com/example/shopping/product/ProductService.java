@@ -12,7 +12,7 @@ public interface ProductService {
 	
 	Product readdetail(Integer id);
 	
-	void update(Product product);
+	void update(Integer id, String about, String name, MultipartFile file, double price);
 	
 	void delete(Integer id);
 

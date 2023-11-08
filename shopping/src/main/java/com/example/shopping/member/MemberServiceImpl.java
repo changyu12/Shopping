@@ -8,6 +8,8 @@ import java.util.UUID;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -66,13 +68,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberRepository.findAll();
 	}
 
-	@Override
-	public Member readdetail(Integer id) {
-		Optional<Member> op = memberRepository.findById(id);
-		Member member = op.get();
-		
-		return member;
-	}
+
 
 	@Override
 	public void update(Member member) {
@@ -88,6 +84,16 @@ public class MemberServiceImpl implements MemberService {
 		
 		memberRepository.delete(member);
 		
+	}
+
+	@Override
+	public Member readdetailusername() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		
+		Optional<Member> om = memberRepository.findByUsername(username);
+		Member member = om.get();
+		return member;
 	}
 	
 

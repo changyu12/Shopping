@@ -10,9 +10,10 @@ public interface MemberService {
 
 	List<Member> readlist();
 	
-	Member readdetail(Integer id);
+	Member readdetailusername();
 	
 	void update(Member member);
 	
 	void delete(Integer id);
+	
 }

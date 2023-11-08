@@ -1,8 +1,6 @@
 package com.example.shopping.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +15,8 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+
 
 	@GetMapping("/create")
 	public String create(Model model) {
@@ -41,12 +41,16 @@ public class MemberController {
 	}
 	
 	@GetMapping("/readdetail")
-	public String readdetail(Model model, @RequestParam("id") Integer id) {
+	public String readdetail(Model model) {
 		
-		model.addAttribute("profile", memberService.readdetail(id));
+		model.addAttribute("member", memberService.readdetailusername());
+		
 		
 		return "member/readdetail";
 	}
+	
+
+
 
 
 }
