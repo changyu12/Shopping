@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.shopping.member.Member;
+import com.example.shopping.chatreply.ChatreplyService;
 import com.example.shopping.member.MemberService;
 
 @RequestMapping("/chat")
@@ -24,6 +24,9 @@ public class ChatController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private ChatreplyService chatreplyService;
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/create")
