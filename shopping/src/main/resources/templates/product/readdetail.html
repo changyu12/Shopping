@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<html  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout=http:www.ultraq.net.nz/thymeleaf/layout
+	  layout:decorate="~{fragments/layout1}">
+
+	<div layout:fragment="content">
  
  [[${product.id}]] 
  <br>
@@ -36,6 +34,8 @@
                     
                     </div>
                   </div>
+                  
+                  
 <!-- <form th:action="@{|/item/create?id=${list.id}|}" method="post">
  <input type="hidden" name="productid" th:value="${list.productid} ">
 <input type="hidden" name="name" th:value="${list.name} ">
@@ -45,5 +45,5 @@
   <p><a href="/cart/readdetail">장바구니</a>
 
 </form>-->
-</body>
+</div>
 </html>
