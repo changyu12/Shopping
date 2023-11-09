@@ -30,5 +30,7 @@ public class Product {
 	private String feed; //제품문의 대화방
 	
 	private LocalDateTime createDate; 
+	
+	
 
 }

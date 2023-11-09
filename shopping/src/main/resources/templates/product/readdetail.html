@@ -29,6 +29,10 @@
                       <a href="/update?bno=${customer.cno}" class="btn btn-phoenix-primary w-100"><span class="fa-solid fa-heart me-2"></span>수정</a>
                     
                     </div>
+                     <div class="col-6 col-sm-auto">
+                      <a th:href="@{|/chat/readdetail?username=${username}|}" class="btn btn-phoenix-primary w-100"><span class="fa-solid fa-heart me-2"></span>관리자와의 대화</a>
+                    
+                    </div>
                     <div class="col-6 col-sm-auto">
                      <a th:href="@{|/product/delete?id=${product.id}|}" class="btn btn-phoenix-danger w-100"><span class="fa-solid fa-share-nodes me-2"></span>삭제</a>
                     

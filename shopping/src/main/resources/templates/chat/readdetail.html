@@ -127,6 +127,7 @@
 
 					<form action="/chatreply/create" method="post">
 						<input type="hidden" name="id" th:value="${chat.id}">
+						<input type="hidden" name="username" th:value="${username}">
 						<div class="card-footer">
 							<input type="text" name="content" class="form-control">
 

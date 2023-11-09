@@ -10,6 +10,8 @@ public interface ChatService {
 	
 	List<Chat> readlist();
 	
+	Chat readdetailusername(String username);
+	
 	Chat readdetail(Integer id);
 	
 	void update(Chat chat);

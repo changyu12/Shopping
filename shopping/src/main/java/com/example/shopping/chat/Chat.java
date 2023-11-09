@@ -31,6 +31,8 @@ public class Chat {
 	
 	private LocalDateTime createDate;
 	
+	private String username;
+	
 	@OneToMany(mappedBy = "chat", cascade = CascadeType.REMOVE)
 	private List<Chatreply> chatreplyList;
 	

@@ -72,13 +72,11 @@ public class ChatController {
 	
 	@GetMapping("/readdetail")
 	public String readdetail(Model model, 
-							 @RequestParam Integer id) {
+							 @RequestParam String username) {
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
 		
 		model.addAttribute("username", username);
-		model.addAttribute("chat", chatService.readdetail(id));
+		model.addAttribute("chat", chatService.readdetailusername(username));
 		
 		return "chat/readdetail";
 	}
