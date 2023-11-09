@@ -37,6 +37,13 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Override
+	public Chat readdetailusername(String username) {
+		Optional<Chat> on = chatRepository.findByUsername(username);
+		
+		return on.get();
+	}
+	
+	@Override
 	public Chat readdetail(Integer id) {
 		Optional<Chat> on = chatRepository.findById(id);
 		

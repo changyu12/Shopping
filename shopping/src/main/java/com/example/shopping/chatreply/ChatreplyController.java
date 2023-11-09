@@ -23,14 +23,15 @@ public class ChatreplyController {
 
     
     @PostMapping("/create")
-    public String create(@RequestParam Integer id,
-                         @RequestParam String content) {
+    public String create(@RequestParam String username,
+                         @RequestParam String content,
+                         @RequestParam Integer id) {
 
     	
 		
     	chatreplyService.create(id, content);
 
-        return "redirect:/chat/readdetail?id=" + id;
+        return "redirect:/chat/readdetail?username=" + username;
     }
 
 

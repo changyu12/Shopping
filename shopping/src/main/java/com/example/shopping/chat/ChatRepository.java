@@ -9,4 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ChatRepository extends JpaRepository<Chat, Integer> {
 
 	Page<Chat> findAll(Pageable pageable);
+	
+	Optional<Chat> findByUsername(String id);
 }
