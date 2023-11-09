@@ -38,9 +38,19 @@ public class ChatServiceImpl implements ChatService {
 
 	@Override
 	public Chat readdetailusername(String username) {
-		Optional<Chat> on = chatRepository.findByUsername(username);
-		
-		return on.get();
+	    Optional<Chat> optionalChat = chatRepository.findByUsername(username);
+
+	    if (optionalChat.isPresent()) {
+	        // 사용자에 대한 채팅이 이미 존재하는 경우, 존재하는 채팅을 반환
+	        return optionalChat.get();
+	    } else {
+	        // 사용자에 대한 채팅이 없는 경우, 새로운 채팅 생성
+	        Chat newChat = new Chat();
+	        newChat.setUsername(username);
+	        // 다른 필요한 초기화 작업 수행
+	        chatRepository.save(newChat); // 새로운 채팅을 저장
+	        return newChat;
+	    }
 	}
 	
 	@Override

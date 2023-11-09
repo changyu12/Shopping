@@ -15,9 +15,7 @@
 		<thead>
 			<tr>
 				<th scope="col">#</th>
-				<th scope="col">title</th>
 				<th scope="col">writer</th>
-				<th scope="col">category</th>
 				<th scope="col">date</th>
 			</tr>
 		</thead>
@@ -25,11 +23,8 @@
 			<tr th:each="chat, loop : ${paging}">
 				<td th:text="${paging.number * paging.size + loop.count}"></td>
 				<td>
-					<a th:href="@{|/chat/readdetail?id=${chat.id}|}">[[${chat.title}]]<a/>
-				</td>
-				<td>[[${chat.writer}]]</td>
+					<a th:href="@{|/chat/adminreaddetail?id=${chat.id}|}">[[${chat.username}]]</td>
 
-				<td>[[${chat.category}]]</td>
 
 				<td th:text="${#temporals.format(chat.createDate, 'yyyy년 MM월 dd일 HH시 mm분')}"></td>
 

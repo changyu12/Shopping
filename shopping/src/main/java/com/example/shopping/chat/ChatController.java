@@ -1,5 +1,7 @@
 package com.example.shopping.chat;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -77,6 +79,18 @@ public class ChatController {
 		
 		model.addAttribute("username", username);
 		model.addAttribute("chat", chatService.readdetailusername(username));
+		
+		return "chat/readdetail";
+	}
+	
+	@GetMapping("/adminreaddetail")
+	public String adminreaddetail(Model model, 
+							 @RequestParam Integer id) {
+		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			String username = auth.getName();
+		
+		model.addAttribute("username", username);
+		model.addAttribute("chat", chatService.readdetail(id));
 		
 		return "chat/readdetail";
 	}
