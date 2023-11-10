@@ -1,15 +1,25 @@
-<!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout=http:www.ultraq.net.nz/thymeleaf/layout
+	layout:decorate="~{fragments/layout1}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-<head>
-	<meta charset="EUC-KR">
-	<title>Insert title here</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-</head>
 
-<body>
-	<h1> 공지사항 목록</h1>
+<div layout:fragment="content">
+
+	<div class="hero">
+		<div class="container">
+			<div class="row justify-content-between">
+				<div class="col-lg-5">
+					<div class="intro-excerpt">
+						<h1>Chat</h1>
+					</div>
+				</div>
+				<div class="col-lg-7">
+
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<table class="table">
 		<thead>
@@ -23,7 +33,8 @@
 			<tr th:each="chat, loop : ${paging}">
 				<td th:text="${paging.number * paging.size + loop.count}"></td>
 				<td>
-					<a th:href="@{|/chat/adminreaddetail?id=${chat.id}|}">[[${chat.username}]]</td>
+					<a th:href="@{|/chat/adminreaddetail?id=${chat.id}|}">[[${chat.username}]]
+				</td>
 
 
 				<td th:text="${#temporals.format(chat.createDate, 'yyyy년 MM월 dd일 HH시 mm분')}"></td>
@@ -58,6 +69,4 @@
 			</ul>
 		</div>
 	</nav>
-</body>
-
-</html>
+</div>

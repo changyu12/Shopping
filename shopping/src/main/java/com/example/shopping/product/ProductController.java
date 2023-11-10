@@ -43,10 +43,7 @@ public class ProductController {
 	@GetMapping("/readdetail")
 	public String readdetail(Model model,@RequestParam("id") Integer id) {
 		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
 		
-		model.addAttribute("username", username);
 		model.addAttribute("product", productService.readdetail(id));
 		
 		return "product/readdetail";

@@ -36,7 +36,7 @@ public class ChatreplyController {
 
     	
 		
-    	chatreplyService.create(id, content);
+    	chatreplyService.create(id, content, username);
     	
     	
     	

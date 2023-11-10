@@ -1,7 +1,5 @@
 package com.example.shopping.chat;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.shopping.auth.UnauthorizedAccessException;
 import com.example.shopping.chatreply.ChatreplyService;
 import com.example.shopping.member.MemberService;
 
@@ -63,6 +62,14 @@ public class ChatController {
 	public String readlist(Model model, 
 			 @RequestParam(value="page", defaultValue="0") int page) {
 		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		
+		if(!"admin@naver.com".equals(username)) {
+			
+			throw new UnauthorizedAccessException("관리자 전용 페이지 입니다.");
+		}
+		
 		Page<Chat> paging = chatService.getList(page);
 		model.addAttribute("paging", paging);
 		
@@ -73,12 +80,13 @@ public class ChatController {
 	
 	
 	@GetMapping("/readdetail")
-	public String readdetail(Model model, 
-							 @RequestParam String username) {
+	public String readdetail(Model model
+							
+							 ) {
 		
 		
-		model.addAttribute("username", username);
-		model.addAttribute("chat", chatService.readdetailusername(username));
+		model.addAttribute("chat", chatService.readdetailusername());
+
 		
 		return "chat/readdetail";
 	}
@@ -86,10 +94,9 @@ public class ChatController {
 	@GetMapping("/adminreaddetail")
 	public String adminreaddetail(Model model, 
 							 @RequestParam Integer id) {
-		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			String username = auth.getName();
 		
-		model.addAttribute("username", username);
+		
+		
 		model.addAttribute("chat", chatService.readdetail(id));
 		
 		return "chat/readdetail";
