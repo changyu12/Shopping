@@ -77,9 +77,8 @@ public class MemberController {
 		int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성
 		System.out.println(phone);
 		System.out.println(randomNumber);
-		System.out.println(phone);
 		String subject = "인증 번호는 "+ randomNumber+"입니다.";
-		//smsService.sendSms(subject,phone);
+		smsService.sendSms(subject,phone);
 		
 		return Integer.toString(randomNumber);
 	}
