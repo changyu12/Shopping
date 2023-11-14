@@ -29,10 +29,24 @@ public class CartServiceImpl implements CartService {
 		@Override
 		public void create(Member member) {
 			Cart cart = new Cart();
-			cart.setMember(member);
 			cart.setUsername(member.getUsername());
 			
 			cartRepository.save(cart);
+			
+		}
+
+		@Override
+		public void delete() {
+			  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		      String username = auth.getName();
+		      
+		      Optional<Cart> oc = cartRepository.findByUsername(username);
+		      Cart cart = oc.get();
+		      Integer id = cart.getId();
+		      
+		      cartRepository.deleteById(id);
+		      
+
 			
 		}
 

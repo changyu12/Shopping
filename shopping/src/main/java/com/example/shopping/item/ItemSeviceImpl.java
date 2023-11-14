@@ -1,14 +1,13 @@
 package com.example.shopping.item;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.shopping.auth.UserDetailRepository;
+
 import com.example.shopping.cart.Cart;
 import com.example.shopping.cart.CartService;
-import com.example.shopping.member.Member;
+
 
 import org.springframework.security.core.context.SecurityContextHolder;
 
@@ -21,8 +20,8 @@ public class ItemSeviceImpl implements ItemService {
 	  private ItemRepository itemRepository;
 	   @Autowired 
 	   private CartService cartService;
-	   @Autowired 
-	   private UserDetailRepository userDetailRepository;
+	   
+	  
 
 	   
 	   @Override
@@ -31,9 +30,7 @@ public class ItemSeviceImpl implements ItemService {
 		   Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		   String username= auth.getName();
 
-	      Optional<Member> ou = userDetailRepository.findByusername(username);
-	      Member member = ou.get();
-	      item.setMember(member);
+	      item.setUsername(username);
 	      
 	      Cart cart = cartService.readdetailusername();
 	      item.setCart(cart);

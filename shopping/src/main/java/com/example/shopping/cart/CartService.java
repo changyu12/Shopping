@@ -7,6 +7,8 @@ public interface CartService {
 	Cart readdetailusername();
 	
 	void create(Member member);
+	
+	void delete();
 
 
 }

@@ -14,6 +14,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.shopping.cart.CartService;
+
+
 //import com.example.shopping.product.Product;
 
 @Service
@@ -21,6 +24,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberRepository memberRepository;
+	
+	@Autowired
+	private CartService cartService;
 
 	@Override
 	public void create(Member member, MultipartFile file) {
@@ -60,6 +66,8 @@ public class MemberServiceImpl implements MemberService {
 		
 		
 		memberRepository.save(member);
+		//카트 생성
+		cartService.create(member);
 		
 	}
 

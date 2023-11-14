@@ -19,6 +19,8 @@ public class Item {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	private String username;
 
 	private String name;
 	
@@ -31,6 +33,5 @@ public class Item {
 	@ManyToOne
 	private Cart cart;
 
-	@ManyToOne
-	private Member member;
+
 }
