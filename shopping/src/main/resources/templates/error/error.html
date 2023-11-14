@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout=http:www.ultraq.net.nz/thymeleaf/layout
+	layout:decorate="~{fragments/layout1}">
+
+
+
+<div layout:fragment="content">
+
+	<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
+    <h1>잘못된 접근</h1>
+    <h2>관리자로 로그인해주세요</h2>
+    <br>
+    <p th:text="${error}"></p>
+</div>
+
+</html>

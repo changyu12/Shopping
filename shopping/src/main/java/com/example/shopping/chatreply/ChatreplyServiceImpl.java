@@ -25,12 +25,9 @@ public class ChatreplyServiceImpl implements ChatreplyService{
     private MemberService memberService;
 
     @Override
-    public void create(Integer id, String content) {
+    public void create(Integer id, String content, String username) {
         
         Chat chat = chatService.readdetail(id);
-        
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String username = auth.getName();
 		
         Chatreply c = new Chatreply();
         	c.setUsername(username);

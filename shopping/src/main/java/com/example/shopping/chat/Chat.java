@@ -21,14 +21,6 @@ public class Chat {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String title;
-		
-	private String content;
-	
-	private String writer;
-	
-	private String category;
-	
 	private LocalDateTime createDate;
 	
 	private String username;
