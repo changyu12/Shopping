@@ -26,6 +26,5 @@ public class Cart {
 	@OneToMany(mappedBy = "cart", cascade = CascadeType.REMOVE)
 	private List<Item> itemList;
 	
-	@ManyToOne
-	private Member member;
+
 }
