@@ -9,10 +9,6 @@
 <!-- jQuery -->	
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 
-<!-- iamport.payment.js -->
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-{SDK-최신버전}.js"></script>
-
-
 <title>Insert title here</title>
 </head>
 <body>
@@ -72,7 +68,13 @@
             $(".submit-button").hide();
         }
     }
-    
+   
+   
+     // 전화번호 입력 칸의 내용이 변경되면 아래 전화번호 칸에 같은 내용을 입력
+    $("#phone").change(function() {
+        var phone = $(this).val();
+        $("input[name='phone']").val(phone);
+    }); 
   
 </script>
 
@@ -112,12 +114,13 @@
 				<div class="row g-5">
 					<div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
 						<h3 class="mb-4">본인인증을 하셔야만 회원가입이 가능합니다.</h3>
-							<input id="phone" type="text" name="phone" title="전화번호 입력">
-								<button id="phoneChk" class="doubleChk" onclick="phoneChk()">인증번호 보내기</button><br />
-								
+							<input id="phone" type="text" title="전화번호 입력">
+								<button id="phoneChk" class="btn btn-primary"  onclick="phoneChk()">인증번호 전송</button><br />
+								<br>
 								<input id="phone2" type="text" name="phone2" title="인증번호 입력" required />
+								
 								<input id="Confirm" type="hidden">
-								<button id="phoneChk2" class="doubleChk" onclick="confirmNum()">본인인증</button><br>
+								<button id="phoneChk2" class="btn btn-primary" onclick="confirmNum()">본인인증</button><br>
 								<span class="point successPhoneChk">휴대폰 번호 입력후 인증번호 보내기를 해주십시오.</span>
 						<h3 class="mb-4">아래 정보를 작성해주세요.</h3>
 
@@ -146,7 +149,7 @@
 
 								<div class="col-md-6">
 									<div class="form-floating">
-										<input type="tel" class="form-control" name="phone"
+										<input type="text" class="form-control" name="phone"
 											placeholder="전화번호">
 										<label for="phone">전화번호</label>
 									</div>

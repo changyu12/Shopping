@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout=http:www.ultraq.net.nz/thymeleaf/layout
+	  layout:decorate="~{fragments/layout1}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+<div layout:fragment="content">
+	<a href="/logout">로그아웃</a>
+	
+	
+	
+	[[${member.id}]] 
+ <br>
+
+ <img class="img-fluid" th:src="@{|http://chandool.cdn1.cafe24.com/${member.mimg}|}" alt="" />
+ <br>
+ [[${member.name}]]
+ <br> 
+ [[${member.phone}]] 
+ <br>
+ [[${member.username}]]
+ <br>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</div>
+</body>
+
+</html>

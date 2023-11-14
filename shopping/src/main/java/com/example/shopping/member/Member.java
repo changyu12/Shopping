@@ -32,7 +32,7 @@ public class Member implements UserDetails {
 	
 	private String name;
 	
-	private String tel;
+	private String phone;
 	
 	private String mimg;
 	
@@ -81,10 +81,4 @@ public class Member implements UserDetails {
 		return true;
 	}
 	
-
-	
-	
-	
-	 
-
 }

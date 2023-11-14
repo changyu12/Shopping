@@ -58,17 +58,14 @@ public class MemberController {
 		
 		return "member/readlist";
 	}
-	
+
 	@GetMapping("/readdetail")
 	public String readdetail(Model model) {
-		
-		model.addAttribute("member", memberService.readdetailusername());
-		
-		
+		Member member = memberService.readdetailusername();
+		model.addAttribute("member", member);
+
 		return "member/readdetail";
 	}
-	
-	
 	
 	
 	@PostMapping("/phoneCheck")
