@@ -40,7 +40,7 @@ public class MemberController {
 		
 		
 		String to = member.getName();
-		String phone = member.getTel();
+		String phone = member.getPhone();
 		
 		String subject = to+"님의 회원가입을 환영합니다.";
 		
