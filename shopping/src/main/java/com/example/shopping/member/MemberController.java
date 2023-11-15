@@ -75,7 +75,7 @@ public class MemberController {
 		System.out.println(phone);
 		System.out.println(randomNumber);
 		String subject = "인증 번호는 "+ randomNumber+"입니다.";
-		smsService.sendSms(subject,phone);
+		//smsService.sendSms(subject,phone);
 		
 		return Integer.toString(randomNumber);
 	}
