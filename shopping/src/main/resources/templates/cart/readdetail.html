@@ -1,19 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout=http:www.ultraq.net.nz/thymeleaf/layout
+	layout:decorate="~{fragments/layout1}">
+
+<div layout:fragment="content">
+	
+	
+	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script>
 IMP.init('imp53620510') // 예: 'imp00000000a'
 
 
 
 function requestPay() {
+	
+	 console.log(uuid());
     IMP.request_pay({
       pg: "danal_tpay",
       pay_method: "card",
-      merchant_uid: "ORD20180131-0000011",   // 주문번호
+      merchant_uid: "ORD"+uuid(),   // 주문번호
       name: "테스트 결제",
       amount: "[[${total}]]",                         // 숫자 타입
       buyer_email:"[[${user.username}]]",
@@ -41,18 +44,150 @@ function requestPay() {
 }
 console.log(uuid())
   </script>
-</head>
-<body>
-	<th:block th:each="list:${list.itemList}">
 	
-	<a th:text="${list.name}"></a> /
+		<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var quantityContainers = document.querySelectorAll('.quantity-container');
 
-	<a th:text="${list.price}"></a>
-	<br>
-</th:block>
+        quantityContainers.forEach(function (container) {
+            var quantityInput = container.querySelector('.quantity-amount');
+            var decreaseButton = container.querySelector('.decrease');
+            var increaseButton = container.querySelector('.increase');
 
-총합:[[${total}]]
-	<br>
-결제:<button onclick="requestPay()">결제</button>
-</body>
-</html>
+            decreaseButton.addEventListener('click', function () {
+                var currentValue = parseInt(quantityInput.value, 10);
+                if (!isNaN(currentValue) && currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                }
+            });
+
+            increaseButton.addEventListener('click', function () {
+                var currentValue = parseInt(quantityInput.value, 10);
+                if (!isNaN(currentValue)) {
+                    quantityInput.value = currentValue + 1;
+                }
+            });
+        });
+    });
+</script>
+
+		<!-- Start Hero Section -->
+			<div class="hero">
+				<div class="container">
+					<div class="row justify-content-between">
+						<div class="col-lg-5">
+							<div class="intro-excerpt">
+								<h1>Cart</h1>
+							</div>
+						</div>
+						<div class="col-lg-7">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- End Hero Section -->
+
+		
+
+		<div class="untree_co-section before-footer-section">
+            <div class="container">
+              <div class="row mb-5">
+                <form class="col-md-12" method="post">
+                  <div class="site-blocks-table">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="product-thumbnail">상품</th>
+                          <th class="product-name"></th>
+                          <th class="product-price">가격</th>
+                          <th class="product-quantity">수량</th>
+                          <th class="product-remove">삭제</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+				     <th:block th:each="list:${list.itemList}">
+                        <tr>
+                          <td class="product-thumbnail">
+                          </td>
+                          <td class="product-name">
+                            <h2 class="h5 text-black"><a th:text="${list.name}"></a></h2>
+                          </td>
+                          <td><a th:text="${list.price}"></a>원</td>
+                         
+                          <td>
+							  
+  <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
+    <div class="input-group-prepend">
+        <button class="btn btn-outline-black decrease" type="button">−</button>
+    </div>
+    <input type="text" class="form-control text-center quantity-amount" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+    <div class="input-group-append">
+        <button class="btn btn-outline-black increase" type="button">+</button>
+    </div>
+</div>
+                          </td> 
+                          <td><a th:href="@{|/product/delete?id=${list.id}|}" class="btn btn-black btn-sm">X</a></td>
+                        </tr>
+        
+                     </th:block>
+                      </tbody>
+                    </table>
+                  </div>
+                </form>
+              </div>
+        
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row mb-5">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                      <button class="btn btn-black btn-sm btn-block">Update Cart</button>
+                    </div>
+                    <div class="col-md-6">
+                      <button class="btn btn-outline-black btn-sm btn-block">장바구니 초기화</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <label class="text-black h4" for="coupon">쿠폰번호</label>
+                      <p>Enter your coupon code if you have one.</p>
+                    </div>
+                    <div class="col-md-8 mb-3 mb-md-0">
+                      <input type="text" class="form-control py-3" id="coupon" placeholder="쿠폰 등록">
+                    </div>
+                    <div class="col-md-4">
+                      <button class="btn btn-black">쿠폰 등록</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 pl-5">
+                  <div class="row justify-content-end">
+                    <div class="col-md-7">
+                      <div class="row">
+                        <div class="col-md-12 text-right border-bottom mb-5">
+                          <h3 class="text-black h4 text-uppercase">  총 주문금액</h3>
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-md-6">
+                          <span class="text-black">선택상품금액</span>
+                        </div>
+                        <div class="col-md-6 text-right">
+                          <strong class="text-black">[[${total}]]</strong>
+                        </div>
+                      </div>
+                      <br><br>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <button class="btn btn-black btn-lg py-3 btn-block" onclick="requestPay()">결제 하기</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+</div>
+

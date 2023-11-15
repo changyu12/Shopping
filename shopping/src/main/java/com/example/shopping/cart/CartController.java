@@ -31,13 +31,19 @@ public class CartController {
 	public String readdetail(Model model) {
 		
 	
-		
 		Cart cart = cartService.readdetailusername();
 		
 		model.addAttribute("user", memberService.readdetailusername());
 		model.addAttribute("list", cartService.readdetailusername());
-		model.addAttribute("total",itemService.findTotalAmount(cart));
+		model.addAttribute(	"total",itemService.findTotalAmount(cart));
 		return"cart/readdetail";
 	}
 	
+	@GetMapping("/delete")
+	public String delete() {
+		
+		cartService.delete();
+		
+		return "redirect:/cart/readdetail";
+	}
 }
