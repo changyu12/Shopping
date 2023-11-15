@@ -36,15 +36,15 @@ public class CartServiceImpl implements CartService {
 		}
 
 		@Override
-		public void delete() {
+		public void delete(Integer id) {
 			  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		      String username = auth.getName();
 		      
 		      Optional<Cart> oc = cartRepository.findByUsername(username);
 		      Cart cart = oc.get();
-		      Integer id = cart.getId();
+		      Integer id1 = cart.getId();
 		      
-		      cartRepository.deleteById(id);
+		      cartRepository.deleteById(id1);
 		      
 
 			
