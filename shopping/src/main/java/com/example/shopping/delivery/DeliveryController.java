@@ -35,11 +35,13 @@ public class DeliveryController {
 	@GetMapping("/payment")
 	public String payment(String uid) {
 		
-		System.out.println(uid);
-		  deliveryService.create(uid);
 		
 		
-		 return "redirect:/crat/readlist";
+		//System.out.println(imp_uid);
+		 deliveryService.create(uid);
+		
+		
+		 return "redirect:/delivery/readlist";
 	}
 	
 	@GetMapping("/readlist")

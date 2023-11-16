@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.example.shopping.cart.Cart;
 import com.example.shopping.cart.CartService;
 import com.example.shopping.item.Item;
+import com.example.shopping.item.ItemService;
 
 
 @Service
@@ -22,6 +23,10 @@ public class DeliveryServiceImpl implements DeliveryService {
 	
 	@Autowired
 	private CartService cartService;
+	
+	@Autowired
+	private ItemService itemService;
+
 
 	@Override
 	public void create(String uid) {
@@ -31,10 +36,12 @@ public class DeliveryServiceImpl implements DeliveryService {
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
 		 String username = auth.getName();
 		 
-		  Cart cart = cartService.readdetailusername();
-	      List<Item> item = cart.getItemList();
-	      String name = item.get(0).getName();
+		 Cart cart = cartService.readdetailusername();
+		 List<Item> item = cart.getItemList();
+		 String name = item.get(0).getName();
 
+		 String allabout = name ;
+		 int total = itemService.findTotalAmount(cart);
 
 		 
 
