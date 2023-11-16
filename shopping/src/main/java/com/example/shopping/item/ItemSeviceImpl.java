@@ -46,4 +46,11 @@ public class ItemSeviceImpl implements ItemService {
 		return itemRepository.findTotalAmount(cart);
 	}
 
+
+	@Override
+	public void deleteById(Integer id) {
+		 itemRepository.deleteById(id);
+		
+	}
+
 	}

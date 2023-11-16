@@ -40,9 +40,9 @@ public class CartController {
 	}
 	
 	@GetMapping("/delete")
-	public String delete() {
+	public String delete(Integer id) {
 		
-		cartService.delete();
+		cartService.delete(id);
 		
 		return "redirect:/cart/readdetail";
 	}

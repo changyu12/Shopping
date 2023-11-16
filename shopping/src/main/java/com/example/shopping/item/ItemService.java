@@ -8,4 +8,6 @@ public interface ItemService {
 	
 	Integer findTotalAmount(Cart cart);
 	
+	void deleteById(Integer id);
+	
 }

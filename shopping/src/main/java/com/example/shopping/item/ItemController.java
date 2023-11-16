@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,4 +31,17 @@ public class ItemController {
 	      
 	      return "redirect:/product/readdetail?id=" +id;
 	   }
-}
+	 
+	    @GetMapping("/delete")
+	    public String showDeleteForm(@RequestParam Integer id) {
+	        
+	    	 itemService.deleteById(id);
+	    	
+	        return "redirect:/cart/readdetail";
+	    }
+	}
+
+
+
+
+

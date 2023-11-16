@@ -2,7 +2,11 @@
 	layout:decorate="~{fragments/layout1}">
 
 <div layout:fragment="content">
-	
+	 <!-- Style CSS -->
+    <link rel="stylesheet" href="../css1/style.css">
+	<!-- Demo CSS (No need to include it into your project) -->
+	<link rel="stylesheet" href="../css1/demo.css">
+  
 	
 	<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script>
@@ -12,16 +16,19 @@ IMP.init('imp53620510') // 예: 'imp00000000a'
 
 function requestPay() {
 	
-	 console.log(uuid());
+	  var  total = $("#totalsum").val();
+	
+	
+	
     IMP.request_pay({
       pg: "danal_tpay",
       pay_method: "card",
       merchant_uid: "ORD"+uuid(),   // 주문번호
-      name: "테스트 결제",
-      amount: "[[${total}]]",                         // 숫자 타입
+      name: "결제",
+      amount: total,                        // 숫자 타입
       buyer_email:"[[${user.username}]]",
       buyer_name: "[[${user.name}]]",
-      buyer_tel: "[[${user.tel}]]"
+      buyer_tel: "[[${user.phone}]]"
     
     }, function (rsp) { // callback
       if(rsp.success){//결제 성공케이스
@@ -45,149 +52,165 @@ function requestPay() {
 console.log(uuid())
   </script>
 	
-		<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var quantityContainers = document.querySelectorAll('.quantity-container');
 
-        quantityContainers.forEach(function (container) {
-            var quantityInput = container.querySelector('.quantity-amount');
-            var decreaseButton = container.querySelector('.decrease');
-            var increaseButton = container.querySelector('.increase');
+  
+      
+ <main>
+     <!-- Start DEMO HTML (Use the following code into your project)-->
+<header id="site-header">
+		<div class="container">
+			<h1>장바구니 </h1>
+		</div>
+	</header>
 
-            decreaseButton.addEventListener('click', function () {
-                var currentValue = parseInt(quantityInput.value, 10);
-                if (!isNaN(currentValue) && currentValue > 1) {
-                    quantityInput.value = currentValue - 1;
-                }
-            });
+	<div class="container">
+ <th:block th:each="list:${list.itemList}">
+		<section id="cart"> 
+			<article class="product">
+				<header>
+						<img src="./img/mouse.jpg" alt="Gamming Mouse">
+				</header>
+           
+				<div class="content">
 
-            increaseButton.addEventListener('click', function () {
-                var currentValue = parseInt(quantityInput.value, 10);
-                if (!isNaN(currentValue)) {
-                    quantityInput.value = currentValue + 1;
-                }
-            });
-        });
-    });
-</script>
+					<h1><a th:text="${list.name}"></a></h1>
 
-		<!-- Start Hero Section -->
-			<div class="hero">
-				<div class="container">
-					<div class="row justify-content-between">
-						<div class="col-lg-5">
-							<div class="intro-excerpt">
-								<h1>Cart</h1>
-							</div>
-						</div>
-						<div class="col-lg-7">
-							
-						</div>
-					</div>
+					<div title="You have selected this product to be shipped in the color yellow." style="top: 0" class="color yellow"><a th:href="@{|/item/delete?id=${list.id}|}">X</a></td></div>
 				</div>
+
+				<footer class="content">
+					<span class="qt-minus">-</span>
+					<span class="qt">2</span>
+					<span class="qt-plus">+</span>
+
+					<h2 class="full-price" th:text="${list.price}">
+						
+					</h2>
+
+					<h2 class="price" th:text="${list.price}">
+
+					</h2>
+				</footer>
+			</article>
+		</section>
+</th:block>
+	</div>
+
+	<footer id="site-footer">
+		<div class="container clearfix">
+
+			<div class="left">
+				<h2 class="subtotal">선택 금액: <span>163.96</span>원</h2>
+				<h3 class="tax">부가세 (5%): <span>8.2</span>원</h3>
+				<h3 class="shipping">배송비: <span>3000</span>원</h3>
 			</div>
-		<!-- End Hero Section -->
 
-		
+			<div class="right">
+				<h1 class="total">총 주문 금액: <span>[[${total}]]</span>원</h1>
+				<input type="hidden" name="totalsum" id="totalsum"value="">
+				<button class="btn btn-black btn-lg py-3 btn-block" onclick="requestPay()">결제 하기</button>
+			</div>
 
-		<div class="untree_co-section before-footer-section">
-            <div class="container">
-              <div class="row mb-5">
-                <form class="col-md-12" method="post">
-                  <div class="site-blocks-table">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th class="product-thumbnail">상품</th>
-                          <th class="product-name"></th>
-                          <th class="product-price">가격</th>
-                          <th class="product-quantity">수량</th>
-                          <th class="product-remove">삭제</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-				     <th:block th:each="list:${list.itemList}">
-                        <tr>
-                          <td class="product-thumbnail">
-                          </td>
-                          <td class="product-name">
-                            <h2 class="h5 text-black"><a th:text="${list.name}"></a></h2>
-                          </td>
-                          <td><a th:text="${list.price}"></a>원</td>
-                         
-                          <td>
-							  
-  <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
-    <div class="input-group-prepend">
-        <button class="btn btn-outline-black decrease" type="button">−</button>
-    </div>
-    <input type="text" class="form-control text-center quantity-amount" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-    <div class="input-group-append">
-        <button class="btn btn-outline-black increase" type="button">+</button>
-    </div>
-</div>
-                          </td> 
-                          <td><a th:href="@{|/product/delete?id=${list.id}|}" class="btn btn-black btn-sm">X</a></td>
-                        </tr>
-        
-                     </th:block>
-                      </tbody>
-                    </table>
-                  </div>
-                </form>
-              </div>
-        
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="row mb-5">
-                    <div class="col-md-6 mb-3 mb-md-0">
-                      <button class="btn btn-black btn-sm btn-block">Update Cart</button>
-                    </div>
-                    <div class="col-md-6">
-                      <button class="btn btn-outline-black btn-sm btn-block">장바구니 초기화</button>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <label class="text-black h4" for="coupon">쿠폰번호</label>
-                      <p>Enter your coupon code if you have one.</p>
-                    </div>
-                    <div class="col-md-8 mb-3 mb-md-0">
-                      <input type="text" class="form-control py-3" id="coupon" placeholder="쿠폰 등록">
-                    </div>
-                    <div class="col-md-4">
-                      <button class="btn btn-black">쿠폰 등록</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 pl-5">
-                  <div class="row justify-content-end">
-                    <div class="col-md-7">
-                      <div class="row">
-                        <div class="col-md-12 text-right border-bottom mb-5">
-                          <h3 class="text-black h4 text-uppercase">  총 주문금액</h3>
-                        </div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-md-6">
-                          <span class="text-black">선택상품금액</span>
-                        </div>
-                        <div class="col-md-6 text-right">
-                          <strong class="text-black">[[${total}]]</strong>
-                        </div>
-                      </div>
-                      <br><br>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <button class="btn btn-black btn-lg py-3 btn-block" onclick="requestPay()">결제 하기</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+		</div>
+	</footer>
+     <!-- END EDMO HTML (Happy Coding!)-->
+ </main>
+ 
+      
+  
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script>
+		var check = false;
+
+function changeVal(el) {
+  var qt = parseFloat(el.parent().children(".qt").html());
+  var price = parseFloat(el.parent().children(".price").html());
+  var eq = Math.round(price * qt * 100) / 100;
+  
+  el.parent().children(".full-price").html( eq + "€" );
+  
+  changeTotal();			
+}
+
+function changeTotal() {
+  
+  var price = 0;
+  
+  $(".full-price").each(function(index){
+    price += parseFloat($(".full-price").eq(index).html());
+  });
+  
+  price = Math.round(price * 100) / 100;
+  var tax = Math.round(price * 0.05 * 100) / 100
+  var shipping = parseFloat($(".shipping span").html());
+  var fullPrice = Math.round((price + tax + shipping) *100) / 100;
+  
+  if(price == 0) {
+    fullPrice = 0;
+  }
+  
+  $(".subtotal span").html(price);
+  $(".tax span").html(tax);
+  $(".total span").html(fullPrice);
+  $('input[name=totalsum]').attr('value', fullPrice);//수정용 입력 칸에 넣기
+  
+}
+
+$(document).ready(function(){
+  
+  $(".remove").click(function(){
+    var el = $(this);
+    el.parent().parent().addClass("removed");
+    window.setTimeout(
+      function(){
+        el.parent().parent().slideUp('fast', function() { 
+          el.parent().parent().remove(); 
+          if($(".product").length == 0) {
+            if(check) {
+              $("#cart").html("<h1>The shop does not function, yet!</h1><p>If you liked my shopping cart, please take a second and heart this Pen on <a href='https://codepen.io/ziga-miklic/pen/xhpob'>CodePen</a>. Thank you!</p>");
+            } else {
+              $("#cart").html("<h1>No products!</h1>");
+            }
+          }
+          changeTotal(); 
+        });
+      }, 200);
+  });
+  
+  $(".qt-plus").click(function(){
+    $(this).parent().children(".qt").html(parseInt($(this).parent().children(".qt").html()) + 1);
+    
+    $(this).parent().children(".full-price").addClass("added");
+    
+    var el = $(this);
+    window.setTimeout(function(){el.parent().children(".full-price").removeClass("added"); changeVal(el);}, 150);
+  });
+  
+  $(".qt-minus").click(function(){
+    
+    child = $(this).parent().children(".qt");
+    
+    if(parseInt(child.html()) > 1) {
+      child.html(parseInt(child.html()) - 1);
+    }
+    
+    $(this).parent().children(".full-price").addClass("minused");
+    
+    var el = $(this);
+    window.setTimeout(function(){el.parent().children(".full-price").removeClass("minused"); changeVal(el);}, 150);
+  });
+  
+  window.setTimeout(function(){$(".is-open").removeClass("is-open")}, 1200);
+  
+  $(".btn").click(function(){
+    check = true;
+    $(".remove").click();
+  });
+});
+	</script> 
+      
+  </body>
+</html>
 
 </div>
 
