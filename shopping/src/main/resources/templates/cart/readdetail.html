@@ -35,7 +35,7 @@ function requestPay() {
 		  //alert("결제 성공")
 		  //컨트롤러로 성공시 성공 ID 값 전달
 		  
-		  location.href='/cart/payment?imp_uid + rsp.imp_uid';
+		  location.href='/delivery/payment?uid='+rsp.uid;
 	  }else{ //실패 케이스
 		 alert("결제 실패") 
 	  }
@@ -101,13 +101,13 @@ console.log(uuid())
 
 			<div class="left">
 				<h2 class="subtotal">선택 금액: <span>163.96</span>원</h2>
-				<h3 class="tax">부가세 (5%): <span>8.2</span>원</h3>
-				<h3 class="shipping">배송비: <span>3000</span>원</h3>
+				<h3 class="tax">부가세 (10%): <span>10</span>원</h3>
+				<h3 class="shipping">배송비: <span>0</span>원</h3>
 			</div>
 
 			<div class="right">
 				<h1 class="total">총 주문 금액: <span>[[${total}]]</span>원</h1>
-				<input type="hidden" name="totalsum" id="totalsum"value="">
+				<input type="hidden" name="totalsum" id="totalsum" value="">
 				<button class="btn btn-black btn-lg py-3 btn-block" onclick="requestPay()">결제 하기</button>
 			</div>
 
@@ -141,7 +141,7 @@ function changeTotal() {
   });
   
   price = Math.round(price * 100) / 100;
-  var tax = Math.round(price * 0.05 * 100) / 100
+  var tax = Math.round(price * 0.1 * 100) / 100
   var shipping = parseFloat($(".shipping span").html());
   var fullPrice = Math.round((price + tax + shipping) *100) / 100;
   

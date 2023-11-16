@@ -20,7 +20,7 @@ public class Status {
 	   
 	   private String sno; //송장번호
 	   
-	   private int step;
+	   private String step;
 	   
 	   private LocalDateTime createDate;
 	   
