@@ -18,9 +18,9 @@ public class ItemController {
 	
 	 @PostMapping("/create")
 	   public String create(@RequestParam Integer id,
-	                      @RequestParam String name,
-	                      @RequestParam String productid,
-	                      @RequestParam double price){
+	                        @RequestParam String name,
+	                        @RequestParam String productid,
+	                        @RequestParam double price){
 	      Item item = new Item();
 	      item.setName(name);
 	      item.setPrice(price);

@@ -16,7 +16,8 @@ import lombok.Data;
 @Entity
 @Data
 public class Delivery {
-	@Id
+	   
+	   @Id
 	   @GeneratedValue(strategy = GenerationType.IDENTITY)
 	   private Integer id;
 	   
@@ -24,8 +25,8 @@ public class Delivery {
 	    
 	   private String allabout;
 	   
-	     @OneToMany(mappedBy = "delivery", cascade = CascadeType.REMOVE)
-		private List<Status> statusList;
+	   @OneToMany(mappedBy = "delivery", cascade = CascadeType.REMOVE)
+	   private List<Status> statusList;
 	   
 	   private int total;
 	   
