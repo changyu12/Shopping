@@ -30,6 +30,8 @@ public class Item {
 	
 	private LocalDateTime createDate;
 	
+	private int pay;
+	
 	@ManyToOne
 	private Cart cart;
 

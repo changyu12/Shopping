@@ -31,6 +31,8 @@ public class DeliveryServiceImpl implements DeliveryService {
 				 delivery.setTotal(total);
 				 delivery.setUsername(username);
 				 delivery.setUid(uid);
+				 delivery.setItemname(username);
+				 
 		deliveryRepository.save(delivery);
 
 }

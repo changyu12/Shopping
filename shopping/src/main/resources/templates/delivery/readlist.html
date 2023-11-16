@@ -1,16 +1,47 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
- <th:block th:each="list:${lists}">
- 
- [[${list.id}]] / <a th:href="@{|/delivery/readdetail?id=${list.id}|}">[[${list.uid}]]</a> 
- / [[${list.total}]] / [[${list.createDate}]]
- <br>
- </th:block>
- 
-</body>
-</html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http:www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{fragments/layout1}">
+
+<div layout:fragment="content">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="../css1/style.css">
+    <!-- Demo CSS (No need to include it into your project) -->
+    <link rel="stylesheet" href="../css1/demo.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <main>
+        <!-- Start DEMO HTML (Use the following code into your project)-->
+        <header id="site-header">
+            <div class="container">
+                <h1>배송목록 </h1>
+            </div>
+        </header>
+
+        <div class="container">
+            <th:block th:each="list:${lists}">        
+                <section id="cart"> 
+                    <article class="product">
+                        <header>
+                            <img src="./img/mouse.jpg" alt="Gamming Mouse">
+                        </header>
+
+                      <div class="content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 16px;">
+                         <span th:text="${list.allabout}"></span>
+                         <span th:text="${list.total}">원</span>
+                         <span th:text="${list.createDate}"></span>
+                       </div>
+
+                        <footer class="content">
+                            <div class="d-grid gap-2 d-md-flex justify-content-center">
+                                <a th:href="@{|/delivery/readdetail?id=${list.id}|}" class="btn btn-primary me-md-2">배송 조회</a>
+                                <a th:href="@{'/product/readdetail/' + ${list.id}}" class="btn btn-primary">후기 작성</a>
+                            </div>
+                        </footer>
+                    </article>
+                </section>
+            </th:block>
+        </div>
+
+        <!-- END DEMO HTML (Happy Coding!)-->
+    </main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</div>

@@ -12,5 +12,7 @@ public interface DeliveryService {
 	List<Delivery> readlistadmin(); //관리자용 딜리버리 전체 목록 조회용
 	
 	Delivery readdetail(Integer id);
+	
+	
 
 }

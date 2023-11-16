@@ -32,5 +32,7 @@ public class Delivery {
 	   private String username;
 	         
 	   private LocalDateTime createDate;
+	   
+	   private String itemname;
 
 }
