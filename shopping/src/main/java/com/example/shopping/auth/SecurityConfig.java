@@ -26,6 +26,7 @@ public class SecurityConfig {
             .authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
                 //.requestMatchers(new AntPathRequestMatcher("/create")).authenticated()
                 .requestMatchers(new AntPathRequestMatcher("/**")).permitAll())
+            	
 								// 진입 권한 설정
             .csrf((csrf) -> csrf
                 .ignoringRequestMatchers(new AntPathRequestMatcher("/**")))

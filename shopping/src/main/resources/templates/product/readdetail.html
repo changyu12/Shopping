@@ -1,35 +1,48 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout=http:www.ultraq.net.nz/thymeleaf/layout
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	layout:decorate="~{fragments/layout1}">
 
 <div layout:fragment="content">
 
-	[[${product.id}]]
-	<br>
-	[[${product.name}]]
-	<br>
-	<img class="img-fluid" th:src="@{|http://chandool.cdn1.cafe24.com/${product.pimg}|}" alt="" />
-	<br>
-	[[${product.about}]]
-	<br>
-	[[${product.productid}]]
-	<br>
-	[[${product.price}]]
-	<br>
 
 
-	<div class="row">
-		<div class="col-6 col-sm-2 mb-2">
+
+
+
+
+
+
+
+<!-- ============================================-->
+        <!-- <section> begin ============================-->
+       
+<br><br>
+          <div class="container">
+            <div class="row g-5 mb-5 mb-lg-8" data-product-details="data-product-details">
+              <div class="col-12 col-lg-6">
+                <div class="row g-3 mb-3">
+                  <div class="col-12 col-md-2 col-lg-12 col-xl-2">
+                    <div class="swiper-products-thumb swiper swiper-container theme-slider overflow-visible" id="swiper-products-thumb"></div>
+                  </div>
+                  <div class="col-12 col-md-10 col-lg-12 col-xl-10">
+                    <div class="d-flex align-items-center border rounded-3 text-center p-5 h-100">
+						<img th:src="@{|http://chandool.cdn1.cafe24.com/${product.pimg}|}" alt="Image" class="img-fluid">
+                      <div class="swiper swiper-container theme-slider" data-thumb-target="swiper-products-thumb" data-products-swiper='{"slidesPerView":1,"spaceBetween":16,"thumbsEl":".swiper-products-thumb"}'></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+					<div class="col-6">
 			<a href="/readlist" class="btn btn-phoenix-success w-100">
 				<span class="fa-regular fa-calendar-plus me-2"></span>목록
 			</a>
 		</div>
-		<div class="col-6 col-sm-2 mb-2">
-			<a href="/update?bno=${customer.cno}" class="btn btn-phoenix-primary w-100">
-				<span class="fa-solid fa-heart me-2"></span>수정
-			</a>
+                  <div class="col-6 ">
+			<a th:href="@{|/chat/readdetail|}" class="btn btn-phoenix-primary w-100">
+				<span class="fa-solid fa-heart me-2"></span>관리자와의 대화</a>
 		</div>
-		<div class="col-6 col-sm-2 mb-2">
-			<form th:action="@{|/item/create?id=${product.id}|}" method="post">
+		<br><br><br>
+                  <form th:action="@{|/item/create?id=${product.id}|}" method="post">
 				<input type="hidden" name="productid" th:value="${product.productid}">
 				<input type="hidden" name="name" th:value="${product.name}">
 				<input type="hidden" name="price" th:value="${product.price}">
@@ -37,18 +50,84 @@
 					<span class="fa-solid fa-shopping-cart me-2"></span>장바구니 담기
 				</button>
 			</form>
-		</div>
-		<div class="col-6 col-sm-2 mb-2">
-			<a th:href="@{|/chat/readdetail|}" class="btn btn-phoenix-primary w-100">
-				<span class="fa-solid fa-heart me-2"></span>관리자와의 대화
+                </div>
+              </div>
+              <div class="col-12 col-lg-6">
+                <div class="d-flex flex-column justify-content-between h-100">
+                  <div>
+                    <div class="d-flex flex-wrap">
+                      <div class="me-2"><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span>
+                      </div>
+                      <p class="text-primary fw-semi-bold mb-2">6548 People rated and reviewed </p>
+                    </div>
+                    <h3 class="mb-3 lh-sm">상품명 : [[${product.name}]]</h3>
+                    <div class="d-flex flex-wrap align-items-start mb-3"><span class="badge bg-success fs--1 rounded-pill me-2 fw-semi-bold">#1 Best seller</span></div>
+                    <div class="d-flex flex-wrap align-items-center">
+                      <h1 class="me-3" style="color: black;">[[${product.price}]]￦</h1>
+                      <p class="text-500 text-decoration-line-through fs-4 mb-0 me-3" >20000￦</p>
+                      <p class="text-warning-500 fw-bolder fs-2 mb-0" style="color: red">80% off</p>
+                    </div>
+                    <p class="text-success fw-semi-bold fs-4 mb-2">상품 번호 :[[${product.productid}]]</p>
+                    <p class="mb-2 text-800"><strong class="text-1000"><h3>상품설명 :</h3></strong></p>
+                    <h2 class="text-danger-500 fw-bold mb-5 mb-lg-0">[[${product.about}]]</h2>
+                  </div>
+                  <div>
+                    <div class="mb-3">
+                      <p class="fw-semi-bold mb-2 text-900">Color : <span class="text-1100" data-product-color="data-product-color">Blue</span></p>
+                      <div class="d-flex product-color-variants" data-product-color-variants="data-product-color-variants">
+                        <div class="rounded-1 border me-2 active" data-variant="Blue" data-products-images='["../../../assets/img/products/details/blue_front.png","../../../assets/img/products/details/blue_back.png","../../../assets/img/products/details/blue_side.png"]'><img src="../../../assets/img/products/details/blue_front.png" alt="" width="38" /></div>
+                        <div class="rounded-1 border me-2" data-variant="Red" data-products-images='["../../../assets/img/products/details/red_front.png","../../../assets/img/products/details/red_back.png","../../../assets/img/products/details/red_side.png"]'><img src="../../../assets/img/products/details/red_front.png" alt="" width="38" /></div>
+                        <div class="rounded-1 border me-2" data-variant="Green" data-products-images='["../../../assets/img/products/details/green_front.png","../../../assets/img/products/details/green_back.png","../../../assets/img/products/details/green_side.png"]'><img src="../../../assets/img/products/details/green_front.png" alt="" width="38" /></div>
+                        <div class="rounded-1 border me-2" data-variant="Purple" data-products-images='["../../../assets/img/products/details/purple_front.png","../../../assets/img/products/details/purple_back.png","../../../assets/img/products/details/purple_side.png"]'><img src="../../../assets/img/products/details/purple_front.png" alt="" width="38" /></div>
+                        <div class="rounded-1 border me-2" data-variant="Silver" data-products-images='["../../../assets/img/products/details/silver_front.png","../../../assets/img/products/details/silver_back.png","../../../assets/img/products/details/silver_side.png"]'><img src="../../../assets/img/products/details/silver_front.png" alt="" width="38" /></div>
+                        <div class="rounded-1 border me-2" data-variant="Yellow" data-products-images='["../../../assets/img/products/details/yellow_front.png","../../../assets/img/products/details/yellow_back.png","../../../assets/img/products/details/yellow_side.png"]'><img src="../../../assets/img/products/details/yellow_front.png" alt="" width="38" /></div>
+                        <div class="rounded-1 border me-2" data-variant="Orange" data-products-images='["../../../assets/img/products/details/orange_front.png","../../../assets/img/products/details/orange_back.png","../../../assets/img/products/details/orange_side.png"]'><img src="../../../assets/img/products/details/orange_front.png" alt="" width="38" /></div>
+                      </div>
+                    </div>
+                    <div class="row g-3 g-sm-5 align-items-end">
+                      <div class="col-12 col-sm-auto">
+                        <p class="fw-semi-bold mb-2 text-900">Size : </p>
+                        <div class="d-flex align-items-center">
+                          <select class="form-select w-auto">
+                            <option value="44">44</option>
+                            <option value="22">22</option>
+                            <option value="18">18</option>
+                          </select><a class="ms-2 fs--1 fw-semi-bold" href="#!">Size chart</a>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm">
+                       
+                       
+                      </div>
+                      
+                    </div>
+                    
+                  </div>
+                  
+                </div>
+                
+              </div>
+              
+            </div>
+            <div class="row">
+		
+		<div th:if="${#authentication.name == 'admin@naver.com'}" class="col-6 col-sm-2 mb-2 ">
+			<a href="/update?bno=${customer.cno}" class="btn btn-phoenix-success w-100">
+				<span class="fa-solid fa-heart me-2"></span>수정
 			</a>
 		</div>
-		<div class="col-6 col-sm-2 mb-2">
-			<a th:href="@{|/product/delete?id=${product.id}|}" class="btn btn-phoenix-danger w-100">
+	
+		
+		<div th:if="${#authentication.name == 'admin@naver.com'}" class="col-6 col-sm-2 mb-2">
+			<a th:href="@{|/product/delete?id=${product.id}|}" class="btn btn-phoenix-success w-100">
 				<span class="fa-solid fa-share-nodes me-2"></span>삭제
 			</a>
 		</div>
 	</div>
+          </div>
+    
+
+	
 
 </div>
 </html>

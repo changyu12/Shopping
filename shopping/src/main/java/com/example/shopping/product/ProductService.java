@@ -1,12 +1,14 @@
 package com.example.shopping.product;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
 public interface ProductService {
 
-	void create(Product product, MultipartFile file);
+	void create(Product product, MultipartFile file) throws FileNotFoundException, IOException;
 	
 	List<Product> readlist();
 	

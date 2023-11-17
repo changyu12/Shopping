@@ -42,6 +42,7 @@ public class DeliveryController {
 		 return "redirect:/crat/readlist";
 	}
 	
+	
 	@GetMapping("/readlist")
 	   public String readlist(Model model) {
 		

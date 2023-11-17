@@ -1,5 +1,8 @@
 package com.example.shopping.product;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.shopping.member.MemberService;
+
 
 @RequestMapping("/product")
 @Controller
@@ -18,6 +23,9 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private MemberService memberService;
 
 	@GetMapping("/create")
 	public String create() {
@@ -26,7 +34,7 @@ public class ProductController {
 	
 	@PostMapping("/create")
 	public String create(Product product,
-						@RequestParam ("filename") MultipartFile file) {
+						@RequestParam ("filename") MultipartFile file) throws FileNotFoundException, IOException {
 								
 		productService.create(product, file);
 		return "product/create";
@@ -43,7 +51,7 @@ public class ProductController {
 	@GetMapping("/readdetail")
 	public String readdetail(Model model,@RequestParam("id") Integer id) {
 		
-		
+		model.addAttribute(memberService.readdetailusername());
 		model.addAttribute("product", productService.readdetail(id));
 		
 		return "product/readdetail";

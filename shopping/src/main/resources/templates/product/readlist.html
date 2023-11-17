@@ -9,9 +9,9 @@
 					<div class="row justify-content-between">
 						<div class="col-lg-5">
 							<div class="intro-excerpt">
-								<h1>Modern Interior <span clsas="d-block">Design Studio</span></h1>
-								<p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
-								<p><a href="/product/create" class="btn btn-secondary me-2">상품 등록</a><a href="#" class="btn btn-white-outline">Explore</a></p>
+								<h1>상품 <span clsas="d-block">목록</span></h1>
+								<p class="mb-4"><h3 style="color: white;">저희 쇼핑몰은 최상의 품질과 착한 가격으로 승부합니다.</h3></p>
+								<p><a th:if="${#authentication.name == 'admin@naver.com'}" href="/product/create" class="btn btn-secondary me-2">상품 등록</a></p>
 							</div>
 						</div>
 						<div class="col-lg-7">

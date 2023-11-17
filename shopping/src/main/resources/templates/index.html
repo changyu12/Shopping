@@ -19,24 +19,14 @@
 					<div class="row justify-content-between">
 						<div class="col-lg-5">
 							<div class="intro-excerpt">
-								
-								
-								<div sec:authorize="isAnonymous()"> 로그인 안함</div>
-		
-		<br>
-<div sec:authorize="isAuthenticated()">로그인 중</div>	
 
-
-  <div th:if="${#authentication.name == 'anonymousUser'}">로그인 안함</div>
-
-  <div th:if="${#authentication.name != 'anonymousUser'}">로그인 중</div>
   
-  <div th:text="${#authentication.name} + ' 님 로그인 중'"></div>
+  
 	  
 	  
-								<h1>Modern Interior <span clsas="d-block">Design Studio</span></h1>
-								<p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
-								<p><a href="" class="btn btn-secondary me-2">Shop Now</a><a href="#" class="btn btn-white-outline">Explore</a></p>
+								<h1>저희 쇼핑몰에<br>  <span clsas="d-block">방문해 주셔서<br>감사합니다</span></h1>
+								
+								<p><a href="/product/readlist" class="btn btn-secondary me-2">상품목록</a></p>
 							</div>
 						</div>
 						<div class="col-lg-7">
@@ -115,7 +105,7 @@
 				<div class="row justify-content-between">
 					<div class="col-lg-6">
 						<h2 class="section-title">왜 우리쇼핑몰이어야만 할까요?</h2>
-						<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
+						<p><h3>격이다른 품질, 차원이 다른 서비스. 무엇을 상상하던 그 이상을 보여드립니다.</h3></p>
 
 						<div class="row my-5">
 							<div class="col-6 col-md-6">
@@ -124,7 +114,7 @@
 										<img src="images/truck.svg" alt="Image" class="imf-fluid">
 									</div>
 									<h3>초고속 &amp; 무료배송</h3>
-									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+									<p>열라빨라 무료배송.</p>
 								</div>
 							</div>
 
@@ -134,7 +124,7 @@
 										<img src="images/bag.svg" alt="Image" class="imf-fluid">
 									</div>
 									<h3>찾기 쉬운 상품</h3>
-									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+									<p>잘찾는다 우리 상품.</p>
 								</div>
 							</div>
 
@@ -144,7 +134,7 @@
 										<img src="images/support.svg" alt="Image" class="imf-fluid">
 									</div>
 									<h3>24시간/상시 배송</h3>
-									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+									<p>쉬지않아 상시배송.</p>
 								</div>
 							</div>
 
@@ -154,7 +144,7 @@
 										<img src="images/return.svg" alt="Image" class="imf-fluid">
 									</div>
 									<h3>무료 교환 환불</h3>
-									<p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+									<p>바꿔바꿔 무료교환.</p>
 								</div>
 							</div>
 
@@ -184,7 +174,7 @@
 						</div>
 					</div>
 					<div class="col-lg-5 ps-lg-5">
-						<h2 class="section-title mb-4">We Help You Make Modern Interior Design</h2>
+						<h2 class="section-title mb-4">여러분의 쇼핑을<br> 도와드리겠습니다.</h2>
 						<p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
 
 						<ul class="list-unstyled custom-list my-4">
@@ -249,110 +239,80 @@
 		</div>
 		<!-- End Popular Product -->
 
-		<!-- Start Testimonial Slider -->
-		<div class="testimonial-section">
+		<!-- Start Team Section -->
+		<div class="untree_co-section">
 			<div class="container">
-				<div class="row">
-					<div class="col-lg-7 mx-auto text-center">
-						<h2 class="section-title">Testimonials</h2>
+
+				<div class="row mb-5">
+					<div class="col-lg-5 mx-auto text-center">
+						<h1 class="section-title"><strong>만든 사람</strong></h1>
 					</div>
 				</div>
 
-				<div class="row justify-content-center">
-					<div class="col-lg-12">
-						<div class="testimonial-slider-wrap text-center">
+				<div class="row">
 
-							<div id="testimonial-nav">
-								<span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
-								<span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
-							</div>
+					<!-- Start Column 1 -->
+					<div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
+						<img src="images/person_1.jpg" class="img-fluid mb-5">
+						<h1 clas><a href="#"><span class=""><strong>박</span> 찬규</strong></a></h1>
+            <span class="d-block position mb-4">CEO, Founder, Atty.</span>
+            <p>Separated they live in.
+            Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+            <p class="mb-0"><a href="#" class="more dark">Learn More <span class="icon-arrow_forward"></span></a></p>
+					</div> 
+					<!-- End Column 1 -->
 
-							<div class="testimonial-slider">
-								
-								<div class="item">
-									<div class="row justify-content-center">
-										<div class="col-lg-8 mx-auto">
+					<!-- Start Column 2 -->
+					<div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
+						<img src="images/person_2.jpg" class="img-fluid mb-5">
 
-											<div class="testimonial-block text-center">
-												<blockquote class="mb-5">
-													<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
-												</blockquote>
+						<h1 clas><a href="#"><span class=""><strong>김</span> 유진</strong></a></h1>
+            <span class="d-block position mb-4">CEO, Founder, Atty.</span>
+            <p>Separated they live in.
+            Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+            <p class="mb-0"><a href="#" class="more dark">Learn More <span class="icon-arrow_forward"></span></a></p>
 
-												<div class="author-info">
-													<div class="author-pic">
-														<img src="images/person-1.png" alt="Maria Jones" class="img-fluid">
-													</div>
-													<h3 class="font-weight-bold">Maria Jones</h3>
-													<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
-												</div>
-											</div>
+					</div> 
+					<!-- End Column 2 -->
 
-										</div>
-									</div>
-								</div> 
-								<!-- END item -->
+					<!-- Start Column 3 -->
+					<div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
+						<img src="images/person_3.jpg" class="img-fluid mb-5">
+						<h1 clas><a href="#"><span class=""><strong>임</span> 지호</strong></a></h1>
+            <span class="d-block position mb-4">CEO, Founder, Atty.</span>
+            <p>Separated they live in.
+            Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+            <p class="mb-0"><a href="#" class="more dark">Learn More <span class="icon-arrow_forward"></span></a></p>
+					</div> 
+					<!-- End Column 3 -->
 
-								<div class="item">
-									<div class="row justify-content-center">
-										<div class="col-lg-8 mx-auto">
+					<!-- Start Column 4 -->
+					<div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
+						<img src="images/person_4.jpg" class="img-fluid mb-5">
 
-											<div class="testimonial-block text-center">
-												<blockquote class="mb-5">
-													<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
-												</blockquote>
+						<h1 clas><a href="#"><span class=""><strong>Austine</strong></span></a></h1>
+            <span class="d-block position mb-4">CEO, Founder, Atty.</span>
+            <p>Separated they live in.
+            Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+            <p class="mb-0"><a href="#" class="more dark">Learn More <span class="icon-arrow_forward"></span></a></p>
 
-												<div class="author-info">
-													<div class="author-pic">
-														<img src="images/person-1.png" alt="Maria Jones" class="img-fluid">
-													</div>
-													<h3 class="font-weight-bold">Maria Jones</h3>
-													<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
-												</div>
-											</div>
+          
+					</div> 
+					<!-- End Column 4 -->
 
-										</div>
-									</div>
-								</div> 
-								<!-- END item -->
+					
 
-								<div class="item">
-									<div class="row justify-content-center">
-										<div class="col-lg-8 mx-auto">
-
-											<div class="testimonial-block text-center">
-												<blockquote class="mb-5">
-													<p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
-												</blockquote>
-
-												<div class="author-info">
-													<div class="author-pic">
-														<img src="images/person-1.png" alt="Maria Jones" class="img-fluid">
-													</div>
-													<h3 class="font-weight-bold">Maria Jones</h3>
-													<span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
-												</div>
-											</div>
-
-										</div>
-									</div>
-								</div> 
-								<!-- END item -->
-
-							</div>
-
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
-		<!-- End Testimonial Slider -->
+		<!-- End Team Section -->
 
 		<!-- Start Blog Section -->
 		<div class="blog-section">
 			<div class="container">
 				<div class="row mb-5">
 					<div class="col-md-6">
-						<h2 class="section-title">Recent Blog</h2>
+						<h2 class="section-title">인테리어</h2>
 					</div>
 					<div class="col-md-6 text-start text-md-end">
 						<a href="#" class="more">View All Posts</a>

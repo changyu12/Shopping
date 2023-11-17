@@ -1,5 +1,8 @@
 package com.example.shopping.member;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -8,12 +11,15 @@ import java.util.UUID;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.example.shopping.cart.CartService;
 
 import groovyjarjarantlr4.v4.parse.BlockSetTransformer.setAlt_return;
@@ -28,39 +34,29 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private CartService cartService;
 
+	@Autowired
+	private AmazonS3 amazonS3;
+	
+	@Value("chandol")
+	private String bucketName;
+	
 	@Override
-	public void create(Member member, MultipartFile file) {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	public void create(Member member, MultipartFile file) throws IOException {
+	File mimg = new File(file.getOriginalFilename());
 		
-		member.setPassword(passwordEncoder.encode(member.getPassword()));
+		//aws s3 mulpartfile을 막바로 올리수 없게 되어있다 
+		//따라서 파일을 일단 저장한 후에 그 파일을 aws로 올리고 삭제한다. 
 		
-		String uuid = UUID.randomUUID().toString();
+		try (FileOutputStream fos = new FileOutputStream(mimg)) {
+			fos.write(file.getBytes());
+		}
 		
-		String filename = uuid + "_" + file.getOriginalFilename();;
+		//역시 보안등의 이유로 uuid 를 사용해도 좋지만 이번엔 다른 방법을 사용해 보자 
 		
-		String FTP_ADDRESS = "iup.cdn1.cafe24.com";
-				String LOGIN = "chandool";
-				String PSW = "rb123123!";
-				
-				FTPClient con = null;
-				
-				try {
-					con = new FTPClient();
-					con.connect(FTP_ADDRESS);
-					
-					if(con.login(LOGIN, PSW)) {
-						con.enterLocalPassiveMode();
-						con.setFileType(FTP.BINARY_FILE_TYPE);
-						con.storeFile(filename, file.getInputStream());
-						con.logout();
-						con.disconnect();
-						System.out.println("success!!!");
-					}
-				} catch (Exception e) {
-					System.out.println("fail!!!");
-				}
+		String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+		amazonS3.putObject(new PutObjectRequest(bucketName, filename, mimg));
 		
-		
+		member.setRole("ROLE_USER");
 		member.setCreateDate(LocalDateTime.now());
 		member.setMimg(filename);
 		

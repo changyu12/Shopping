@@ -37,6 +37,8 @@ public class Member implements UserDetails {
 	private String mimg;
 	
 	private LocalDateTime createDate;
+	
+	private String role;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

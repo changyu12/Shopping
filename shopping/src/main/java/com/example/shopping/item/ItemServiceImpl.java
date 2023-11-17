@@ -14,7 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.Authentication;
 
 @Service
-public class ItemSeviceImpl implements ItemService {
+public class ItemServiceImpl implements ItemService {
 
 	  @Autowired
 	  private ItemRepository itemRepository;
