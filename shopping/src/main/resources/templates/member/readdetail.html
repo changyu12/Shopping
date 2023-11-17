@@ -4,44 +4,65 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+  <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="../../assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="../../assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+    <script src="../../vendors/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="../../vendors/simplebar/simplebar.min.js"></script>
+    <script src="../../assets/js/config.js"></script>
 
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="../../vendors/glightbox/glightbox.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
+    <link href="../../vendors/simplebar/simplebar.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+    <link href="../../assets/css/theme-rtl.min.css" type="text/css" rel="stylesheet" id="style-rtl">
+    <link href="../../assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
+    <link href="../../assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
+    <link href="../../assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
+    <script>
+      var phoenixIsRTL = window.config.config.phoenixIsRTL;
+      if (phoenixIsRTL) {
+        var linkDefault = document.getElementById('style-default');
+        var userLinkDefault = document.getElementById('user-style-default');
+        linkDefault.setAttribute('disabled', true);
+        userLinkDefault.setAttribute('disabled', true);
+        document.querySelector('html').setAttribute('dir', 'rtl');
+      } else {
+        var linkRTL = document.getElementById('style-rtl');
+        var userLinkRTL = document.getElementById('user-style-rtl');
+        linkRTL.setAttribute('disabled', true);
+        userLinkRTL.setAttribute('disabled', true);
+      }
+    </script>
 </head>
 <body>
 <div layout:fragment="content">
-	<a href="/logout">로그아웃</a>
-	
-	
-	
-	[[${member.id}]] 
- <br>
 
- <img class="img-fluid" th:src="@{|http://chandool.cdn1.cafe24.com/${member.mimg}|}" alt="" />
- <br>
- [[${member.name}]]
- <br> 
- [[${member.phone}]] 
- <br>
- [[${member.username}]]
- <br>
- 
- 
  <div class="content">
         <div class="pb-9">
           <div class="card mb-5">
             <div class="card-header hover-actions-trigger d-flex justify-content-center align-items-end position-relative mb-7 mb-xxl-0" style="min-height: 214px; ">
               <div class="bg-holder rounded-top" style="background-image:url(../../assets/img/generic/cover-photo.png);">
-				  <img src="../../assets/img/generic/cover-photo.png">
+				
               </div>
-              <input class="d-none" id="upload-cover-image" type="file" />
-              <label class="cover-image-file-input" for="upload-cover-image"></label>
-              <div class="hover-actions end-0 bottom-0 pe-1 pb-2 text-white"><span class="fa-solid fa-camera me-2 overlay-icon"></span></div>
-              <!--/.bg-holder-->
 
-              <input class="d-none" id="upload-porfile-picture" type="file" />
-              <div class="hoverbox feed-profile" style="width: 150px; height: 150px">
-                <div class="hoverbox-content bg-black rounded-circle d-flex flex-center z-index-1" style="--phoenix-bg-opacity: .56;"><span class="fa-solid fa-camera fs-7 text-300 light"></span></div>
-                <div class="position-relative bg-400 rounded-circle cursor-pointer d-flex flex-center mb-xxl-7">
-                  <div class="avatar avatar-5xl"><img class="rounded-circle rounded-circle bg-white img-thumbnail shadow-sm" src="../../assets/img/team/9.webp" alt="" /></div>
+              <!--/.bg-holder-->
+              <div class="hoverbox feed-profile" style="width: 150px; height: 150px"> 
+                <div class="position-relative bg-400 rounded-circle cursor-pointer d-flex flex-center mb-xxl-7">                      
+                  <div class="avatar avatar-5xl"><img class="rounded-circle rounded-circle bg-white img-thumbnail shadow-sm" th:src="@{|https://youjinbucket.s3.ap-northeast-2.amazonaws.com/${member.mimg}|}" alt="" /></div>
                   <label class="w-100 h-100 position-absolute z-index-1" for="upload-porfile-picture"></label>
                 </div>
               </div>
@@ -50,32 +71,23 @@
               <div class="row justify-content-xl-between">
                 <div class="col-auto">
                   <div class="d-flex flex-wrap mb-3 align-items-center">
-                    <h2 class="me-2">Erza Bridgest</h2><span class="fw-semi-bold fs-1 text-1100">u/hansolo</span>
+                    <h2 class="me-2">아이디 : </h2><span class="fw-semi-bold fs-1 text-1100">[[${member.username}]]</span>
                   </div>
                   <div class="mb-5">
-                    <div class="d-md-flex align-items-center">
-                      <div class="d-flex align-items-center"><span class="fa-solid fa-user-group fs--1 text-700 me-2 me-lg-1 me-xl-2"></span><a class="text-1100" href="#!"><span class="fs-1 fw-bold text-600 hover-text-1100">1297 <span class="fw-semi-bold ms-1 me-4">Followers</span></span></a></div>
-                      <div class="d-flex align-items-center"><span class="fa-solid fa-user-check fs--1 text-700 me-2 me-lg-1 me-xl-2"></span><a class="text-1100" href="#!"><span class="fs-1 fw-bold text-600 hover-text-1100">3971 <span class="fw-semi-bold ms-1 me-4">Following</span></span></a></div>
-                      <div class="d-flex align-items-center"><span class="fa-solid fa-location-dot fs--1 text-700 me-2 me-lg-1 me-xl-2"></span><a class="text-1100" href="#!"><span class="fs-1 fw-semi-bold text-600 hover-text-1100">Vancouver, Lothal</span></a></div>
-                    </div>
+                   <h2 class="me-2">전화번호 : </h2><span class="fw-semi-bold fs-1 text-1100"> [[${member.phone}]] </span><br><br>
+                   <h2 class="me-2">이름 : </h2><span class="fw-semi-bold fs-1 text-1100"> [[${member.name}]] </span>
                   </div>
                   <p class="fs-2 text-800">“Whenever you find yourself on the side of the majority, it is time to pause and reflect.”</p>
                 </div>
                 <div class="col-auto">
                   <div class="row g-2">
                     <div class="col-auto order-xxl-2">
-                      <button class="btn btn-primary lh-1"><span class="fa-solid fa-user-plus me-2"></span>Follow Request</button>
+                      <a href="/delivery/readlist" class="btn btn-primary lh-1"><span class="fa-solid fa-user-plus me-2"></span>배송 목록</a>
                     </div>
                     <div class="col-auto order-xxl-1">
-                      <button class="btn btn-phoenix-primary lh-1"><span class="fa-solid fa-message me-2"></span>Send Message</button>
+                      <a href="/logout" class="btn btn-phoenix-danger lh-1"><span class="fa-solid fa-message me-2"></span>로그아웃</a>
                     </div>
-                    <div class="col-auto">
-                      <div class="position-static">
-                        <button class="btn btn-phoenix-secondary lh-1" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fa-solid fa-chevron-down me-2"></span> More</button>
-                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item d-xl-none" href="#!"><span class="fa-solid fa-user-group text-800 me-2"></span><span>Followers</span></a><a class="dropdown-item d-xl-none" href="#!"><span class="fa-solid fa-users text-800 me-2"></span><span>Communities</span></a><a class="dropdown-item d-xl-none" href="#!"><span class="fa-solid fa-photo-film text-800 me-2"></span><span>Media Files</span></a><a class="dropdown-item d-xl-none" href="#!"><span class="fa-solid fa-calendar-days fs-0 text-800 me-2"></span><span> Events</span></a><a class="dropdown-item d-xl-none" href="#!"><span class="fa-solid fa-dice text-800 me-2"></span><span>Games</span></a><a class="dropdown-item d-xl-none" href="#!"><span class="fa-solid fa-user-gear text-800 me-2"></span><span>Settings</span></a><a class="dropdown-item" href="#!"><span class="fa-solid fa-bell-slash text-800 me-2"></span><span>Mute Conversation</span></a><a class="dropdown-item" href="#!"><span class="fa-solid fa-gear text-800 me-2"></span><span>Manage Settings</span></a><a class="dropdown-item" href="#!"><span class="fa-solid fa-hand-holding-heart text-800 me-2"></span><span>Get help</span></a><a class="dropdown-item" href="#!"><span class="fa-solid fa-flag text-800 me-2"></span><span>Report Account</span></a><a class="dropdown-item" href="#!"><span class="fa-solid fa-ban text-800 me-2"></span><span>Block Account</span></a>
-                        </div>
-                      </div>
-                    </div>
+                  
                   </div>
                 </div>
               </div>
@@ -83,9 +95,10 @@
           </div>
  
  
+</div>
+</div> 
  
- 
-<a href="/delivery/readlist" class="btn btn-primary">배송 목록</a>
+
 	
 	
 	
@@ -96,7 +109,21 @@
 	
 	
 	
-	
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="../../vendors/popper/popper.min.js"></script>
+    <script src="../../vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="../../vendors/anchorjs/anchor.min.js"></script>
+    <script src="../../vendors/is/is.min.js"></script>
+    <script src="../../vendors/fontawesome/all.min.js"></script>
+    <script src="../../vendors/lodash/lodash.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="../../vendors/list.js/list.min.js"></script>
+    <script src="../../vendors/feather-icons/feather.min.js"></script>
+    <script src="../../vendors/dayjs/dayjs.min.js"></script>
+    <script src="../../vendors/glightbox/glightbox.min.js"> </script>
+    <script src="../../assets/js/phoenix.js"></script>	
 	
 </div>
 </body>

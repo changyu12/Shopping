@@ -12,6 +12,11 @@
 					<div class="intro-excerpt">
 						<h1>Notice</h1>
 					</div>
+					<div th:if="${#authentication.name == 'admin@naver.com'}" class="col-6 ">
+			<a href="/notice/create" class="btn btn-phoenix-success w-150">
+				<span class="fa-solid fa-heart me-2"></span>공지등록
+			</a>
+		</div>
 				</div>
 				<div class="col-lg-7">
 
