@@ -70,7 +70,7 @@ public class ProductController {
 						 @RequestParam String name,
 						 @RequestParam ("filename") MultipartFile file,
 						 @RequestParam double price
-						 ) {
+						 ) throws FileNotFoundException, IOException {
 		
 		
 	
