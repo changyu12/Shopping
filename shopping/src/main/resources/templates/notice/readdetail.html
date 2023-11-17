@@ -19,7 +19,6 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th scope="col">No</th>
 					<th scope="col">내용</th>
 					<th scope="col">작성일</th>
 
@@ -28,7 +27,6 @@
 			<tbody>
 				<th:block th:each="comment: ${notice.commentList}">
 					<tr>
-						<td>[[${comment.id}]] </td>
 						<td>[[${comment.content}]] </td>
 
 						<td>

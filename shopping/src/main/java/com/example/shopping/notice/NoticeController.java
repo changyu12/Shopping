@@ -12,40 +12,45 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.shopping.auth.UnauthorizedAccessException;
 import com.example.shopping.member.Member;
 import com.example.shopping.member.MemberService;
 
 @RequestMapping("/notice")
 @Controller
 public class NoticeController {
-	
+
 	@Autowired
 	private NoticeService noticeService;
-	
+
 	@Autowired
 	private MemberService memberService;
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/create")
 	public String create(Model model) {
-		
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
-		
+
+		if (!"admin@naver.com".equals(username)) {
+
+			throw new UnauthorizedAccessException("관리자 전용 페이지 입니다.");
+		}
+
 		model.addAttribute("name", username);
-		
+
 		return "notice/create";
 	}
-	
-	
+
 	@PostMapping("/create")
 	public String create(Notice notice) {
-		
+
 		noticeService.create(notice);
-		
+
 		return "redirect:/notice/readlist";
 	}
-	
+
 //	@GetMapping("/readlist")
 //	public String readlist(Model model) {
 //		
@@ -55,50 +60,38 @@ public class NoticeController {
 //	}
 //	
 	@GetMapping("/readlist")
-	public String readlist(Model model, 
-			 @RequestParam(value="page", defaultValue="0") int page) {
-		
+	public String readlist(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
+
 		Page<Notice> paging = noticeService.getList(page);
 		model.addAttribute("paging", paging);
-		
+
 		return "notice/readlist";
 	}
-	
-	
-	
-	
+
 	@GetMapping("/readdetail")
-	public String readdetail(Model model, 
-							 @RequestParam Integer id) {
-		
+	public String readdetail(Model model, @RequestParam Integer id) {
+
 		Notice notice = noticeService.readdetail(id);
-		
+
 		model.addAttribute("notice", noticeService.readdetail(id));
-		
+
 		return "notice/readdetail";
 	}
-	
+
 	@GetMapping("/update")
-	public String update(Model model, 
-						 @RequestParam Integer id) {
+	public String update(Model model, @RequestParam Integer id) {
 
 		model.addAttribute("notice", noticeService.readdetail(id));
 
 		return "notice/update";
 	}
-	
-	
+
 	@PostMapping("/update")
 	public String update(Notice notice) {
-		
+
 		noticeService.update(notice);
-		
+
 		return "redirect:/notice/readlist";
 	}
-	
-	
-	
-	
-	
-	
+
 }
