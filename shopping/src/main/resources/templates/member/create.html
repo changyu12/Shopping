@@ -44,18 +44,16 @@
         var number1 = $("#phone2").val();
         var number2 = $("#Confirm").val();
 		
-        if(number1 == number2){
-            
-            $(".successPhoneChk").text("인증번호가 일치합니다.");
+        if(number1 == null || number1 == "" || number1 != number2){
+			$(".successPhoneChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
+			$(".successPhoneChk").css("color","red");
+        }else{
+        	$(".successPhoneChk").text("인증번호가 일치합니다.");
 			$(".successPhoneChk").css("color","green");
 			
 			 // 본인인증이 성공하면 isVerified를 true로 설정하고, 버튼의 가시성 업데이트
             isVerified = true;
-            updateSubmitButton();
-
-        }else{
-        	$(".successPhoneChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
-			$(".successPhoneChk").css("color","red");
+            updateSubmitButton();		
 
         }
     }
