@@ -33,12 +33,12 @@ public class DeliveryController {
 	   private MemberService memberService;
 
 	@GetMapping("/payment")
-	public String payment(String uid) {
+	public String payment(String uid, int total) {
 		
-		
+		 
 		
 		//System.out.println(imp_uid);
-		 deliveryService.create(uid);
+		 deliveryService.create(uid, total);
 		
 		
 		 return "redirect:/delivery/readlist";

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>관리자 고객주문 상품 상세내역 관리</h1>
+ 
+ 구매 상품:&ensp;[[${list.allabout}]] <br>  
+ 입금가격:&ensp;[[${list.total}]] 원<br> 
+ 구매일: &ensp;[[${#temporals.format(list.createDate, 'yyyy년 MM월 dd일 HH:mm')}]]<br> 
+ <br> 
+
+
+<form action="/admin/create" method="post">
+	<p>회원명:<input type="text" name="username" th:value="${list.username}" readonly></p>
+	<p>송장번호:<input type="text" name="sno" ></p>
+	<p>단계:<select name="step">
+		 <option value="입금확인">입금확인</option>
+		 <option value="배송준비">배송준비</option>
+		 <option value="배송시작">배송시작</option>
+		 <option value="배송 중">배송 중</option>
+		 <option value="배송완료">배송완료</option>
+		
+		
+	</select></p>
+	<p><input type="hidden" name="id" th:value="${list.id}"></p>
+
+	<p><input type="submit" value="등록" ></p>
+	
+</form>
+
+<!--
+step 1 입금확인
+step 2 배송준비
+step 3 배송시작
+step 4 배송 중
+step 5 배송완료
+-->
+
+ <th:block th:each="deli:${list.statusList}">
+   <P>번호:&ensp;<a th:text="${deli.id}"></a>
+   <P>송장 번호:&ensp;[[${deli.sno}]]
+   <P>배송 STEP:&ensp;[[${deli.step}]] 
+   
+  <P>회원명:&ensp;<a th:text="${deli.username}"></a>
+
+   
+
+   <br>
+</th:block>
+
+</body>
+</html>

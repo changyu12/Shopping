@@ -35,7 +35,7 @@ function requestPay() {
 		  //alert("결제 성공")
 		  //컨트롤러로 성공시 성공 ID 값 전달
 		  
-		  location.href='/delivery/payment?uid='+rsp.uid;
+		  location.href='/delivery/payment?uid='+rsp.uid+'&total='+total;
 	  }else{ //실패 케이스
 		 alert("결제 실패") 
 	  }
@@ -68,7 +68,7 @@ console.log(uuid())
 		<section id="cart"> 
 			<article class="product">
 				<header>
-						<img src="./img/mouse.jpg" alt="Gamming Mouse">
+					<!--	<img th:src="@{|https://youjinbucket.s3.ap-northeast-2.amazonaws.com/${product.pimg}|}" alt="Gamming Mouse">-->
 				</header>
            
 				<div class="content">

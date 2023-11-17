@@ -13,6 +13,8 @@ import com.example.shopping.cart.Cart;
 import com.example.shopping.cart.CartService;
 import com.example.shopping.item.Item;
 import com.example.shopping.item.ItemService;
+import com.example.shopping.member.Member;
+import com.example.shopping.member.MemberService;
 
 
 @Service
@@ -26,10 +28,13 @@ public class DeliveryServiceImpl implements DeliveryService {
 	
 	@Autowired
 	private ItemService itemService;
+	
+	@Autowired
+	private MemberService memberService;
 
 
 	@Override
-	public void create(String uid) {
+	public void create(String uid ,int total) {
 		
 		
 		 //현재 사용자 정보 추출 
@@ -38,11 +43,9 @@ public class DeliveryServiceImpl implements DeliveryService {
 		 
 		 Cart cart = cartService.readdetailusername();
 		 List<Item> item = cart.getItemList();
-		 String name = item.get(0).getName();
-
-		 String allabout = name ;
-		 int total = itemService.findTotalAmount(cart);
-
+		 
+		 
+		 String allabout = item.get(0).getName()+"외"+(item.size()-1)+"계";
 		 
 
 	      Delivery delivery = new Delivery();
@@ -52,6 +55,10 @@ public class DeliveryServiceImpl implements DeliveryService {
 	      delivery.setUid(uid);
 	      delivery.setUsername(username);
 	      deliveryRepository.save(delivery);
+	      
+	      Member member = memberService.readdetailusername();
+	      cartService.delete();
+	      cartService.create(member);
 
 
 }
