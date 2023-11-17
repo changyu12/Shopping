@@ -37,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private AmazonS3 amazonS3;
 	
-	@Value("chandol")
+	@Value("youjinbucket")
 	private String bucketName;
 	
 	@Override
@@ -56,6 +56,10 @@ public class MemberServiceImpl implements MemberService {
 		String filename = System.currentTimeMillis() + "_" + file.getOriginalFilename();
 		amazonS3.putObject(new PutObjectRequest(bucketName, filename, mimg));
 		
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
+		member.setPassword(passwordEncoder.encode(member.getPassword()));
 		member.setRole("ROLE_USER");
 		member.setCreateDate(LocalDateTime.now());
 		member.setMimg(filename);
