@@ -14,6 +14,10 @@ import com.example.shopping.cart.CartService;
 import com.example.shopping.item.Item;
 import com.example.shopping.item.ItemService;
 
+import com.example.shopping.member.Member;
+import com.example.shopping.member.MemberService;
+
+
 
 @Service
 public class DeliveryServiceImpl implements DeliveryService {
@@ -23,18 +27,26 @@ public class DeliveryServiceImpl implements DeliveryService {
 	
 	@Autowired
 	private CartService cartService;
+	
+	@Autowired
+	private ItemService itemService;
+	
+	@Autowired
+	private MemberService memberService;
+
 
 	@Autowired
 	private ItemService itemService;
 	
 	@Override
-	public void create(String uid) {
+	public void create(String uid ,int total) {
 		
 		
 		 //현재 사용자 정보 추출 
 		 Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
 		 String username = auth.getName();
 		 
+
 		  Cart cart = cartService.readdetailusername();
 	      List<Item> item = cart.getItemList();
 	      String allabout = item.get(0).getName();
@@ -43,6 +55,14 @@ public class DeliveryServiceImpl implements DeliveryService {
 		 Integer total = itemService.findTotalAmount(cart);
 		
 
+		 Cart cart = cartService.readdetailusername();
+		 List<Item> item = cart.getItemList();
+		 
+		 
+		 String allabout = item.get(0).getName()+"외"+(item.size()-1)+"계";
+		 
+
+
 	      Delivery delivery = new Delivery();
 	      delivery.setCreateDate(LocalDateTime.now());
 		  delivery.setAllabout(allabout);
@@ -50,6 +70,10 @@ public class DeliveryServiceImpl implements DeliveryService {
 	      delivery.setUid(uid);
 	      delivery.setUsername(username);
 	      deliveryRepository.save(delivery);
+	      
+	      Member member = memberService.readdetailusername();
+	      cartService.delete();
+	      cartService.create(member);
 
 
 }

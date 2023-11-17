@@ -34,6 +34,6 @@ public class Delivery {
 	         
 	   private LocalDateTime createDate;
 	   
-	   private String itemname;
+	   
 
 }

@@ -8,7 +8,7 @@ public interface CartService {
 	
 	void create(Member member);
 	
-	void delete(Integer id);
+	void delete();
 
 
 }
