@@ -29,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	private AmazonS3 amazonS3;
 	
-	@Value("chandol")
+	@Value("youjinbucket")
 	private String bucketName;
 	
 	@Override
