@@ -20,11 +20,13 @@ public class ItemController {
 	   public String create(@RequestParam Integer id,
 	                        @RequestParam String name,
 	                        @RequestParam String productid,
+	                        @RequestParam String pimg,
 	                        @RequestParam double price){
 	      Item item = new Item();
 	      item.setName(name);
 	      item.setPrice(price);
 	      item.setProductId(productid);
+	      item.setPimg(pimg);
 	      item.setCreateDate(LocalDateTime.now());
 
 	      itemService.create(item);

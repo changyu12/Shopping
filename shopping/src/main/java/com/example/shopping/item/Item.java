@@ -30,7 +30,7 @@ public class Item {
 	
 	private LocalDateTime createDate;
 	
-	
+	private String pimg; //상품 사진
 
 	
 	@ManyToOne
