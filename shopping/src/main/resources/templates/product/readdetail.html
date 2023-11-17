@@ -33,7 +33,7 @@
                 </div>
                 <div class="row">
 					<div class="col-6">
-			<a href="/readlist" class="btn btn-phoenix-success w-100">
+			<a href="/product/readlist" class="btn btn-phoenix-success w-100">
 				<span class="fa-regular fa-calendar-plus me-2"></span>목록
 			</a>
 		</div>
@@ -113,7 +113,7 @@
             <div class="row">
 		
 		<div th:if="${#authentication.name == 'admin@naver.com'}" class="col-6 col-sm-2 mb-2 ">
-			<a href="/update?bno=${customer.cno}" class="btn btn-phoenix-success w-100">
+			<a th:href="@{|/product/update?id=${product.id}|}" class="btn btn-phoenix-success w-100">
 				<span class="fa-solid fa-heart me-2"></span>수정
 			</a>
 		</div>

@@ -14,7 +14,7 @@ public interface ProductService {
 	
 	Product readdetail(Integer id);
 	
-	void update(Integer id, String about, String name, MultipartFile file, double price);
+	void update(Integer id, String about, String name, MultipartFile file, double price) throws FileNotFoundException, IOException;
 	
 	void delete(Integer id);
 
