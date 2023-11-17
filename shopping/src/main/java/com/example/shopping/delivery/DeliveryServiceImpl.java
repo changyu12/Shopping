@@ -35,8 +35,7 @@ public class DeliveryServiceImpl implements DeliveryService {
 	private MemberService memberService;
 
 
-	@Autowired
-	private ItemService itemService;
+
 	
 	@Override
 	public void create(String uid ,int total) {
@@ -53,10 +52,6 @@ public class DeliveryServiceImpl implements DeliveryService {
 
 
 		 Integer total = itemService.findTotalAmount(cart);
-		
-
-		 Cart cart = cartService.readdetailusername();
-		 List<Item> item = cart.getItemList();
 		 
 		 
 		 String allabout = item.get(0).getName()+"외"+(item.size()-1)+"계";
