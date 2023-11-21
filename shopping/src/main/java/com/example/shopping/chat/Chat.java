@@ -17,6 +17,7 @@ import lombok.Data;
 @Entity
 public class Chat {
 
+	private String title;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
